@@ -1,0 +1,13 @@
+version: "3.7"
+
+services:
+  rabbit_ws_app:
+    container_name: rabbit_ws_app
+    build: .
+    env_file:
+      - .env
+    volumes:
+      - ./:/app:delegated
+    ports:
+      - 8888:8888
+    restart: unless-stopped
