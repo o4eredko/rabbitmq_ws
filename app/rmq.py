@@ -1,9 +1,9 @@
 import asyncio
-import logging
 import os
 from contextlib import asynccontextmanager
 from itertools import chain
 from typing import List, Awaitable, Callable
+from datetime import datetime
 
 import aiormq
 
@@ -117,7 +117,7 @@ class RabbitMQClient:
 
     async def _setup(self, channel: aiormq.channel):
         self.channel = channel
-        declare_ok = await channel.queue_declare(queue=self.client_id)
+        declare_ok = await channel.queue_declare(queue=f"{self.client_id}{datetime.utcnow()}")
         self.queue = declare_ok.queue
         queue_bindings = (
             self._bind_queue(exchange) for exchange in await self.get_exchanges_to_subscribe()
