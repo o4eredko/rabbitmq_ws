@@ -75,7 +75,7 @@ class RabbitMQ:
 
     async def startup(self):
         await self.conn.connect()
-        # await self._load_fanouts()
+        await self._load_fanouts()
         await self._declare_exchanges()
 
     async def shutdown(self):
