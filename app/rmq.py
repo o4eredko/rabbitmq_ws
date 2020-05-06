@@ -1,4 +1,5 @@
 import asyncio
+import json
 import os
 import time
 from contextlib import asynccontextmanager
@@ -136,7 +137,8 @@ class RabbitMQClient:
         self.channel = None
 
     async def _publisher(self, msg: str, routing_key=None):
-        await self.channel.basic_publish(body=msg.encode(), exchange='', routing_key=routing_key)
+        await self.channel.basic_publish(body=json.dumps(msg).encode(), exchange='',
+                                         routing_key=routing_key)
 
     @property
     @asynccontextmanager
