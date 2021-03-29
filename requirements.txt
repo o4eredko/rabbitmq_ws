@@ -38,7 +38,7 @@ prompt-toolkit==3.0.5
 ptyprocess==0.6.0
 pycparser==2.20
 pydantic==1.4
-Pygments==2.6.1
+Pygments==2.7.4
 PyJWT==1.7.1
 PyMySQL==0.9.2
 python-multipart==0.0.5
